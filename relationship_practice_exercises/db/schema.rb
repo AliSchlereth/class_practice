@@ -11,38 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017162019) do
+ActiveRecord::Schema.define(version: 20161017164716) do
 
   create_table "albums", force: :cascade do |t|
     t.string "title"
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.string   "name"
+  create_table "customers", force: :cascade do |t|
+    t.string   "email"
+    t.string   "fax"
+    t.string   "phone"
+    t.string   "address"
+    t.string   "city"
+    t.string   "company"
+    t.string   "last_name"
+    t.string   "first_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string   "email"
+    t.string   "fax"
+    t.string   "phone"
+    t.string   "address"
+    t.datetime "hire_date"
+    t.datetime "birth_date"
+    t.string   "title"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "total"
   end
 
   create_table "media_types", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "playlist_tracks", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "tracks", force: :cascade do |t|
-    t.string   "name"
-    t.string   "composer"
-    t.integer  "milliseconds"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "album_id"
-    t.integer  "genre_id"
-    t.integer  "media_type_id"
+    t.string  "name"
+    t.string  "composer"
+    t.integer "millseconds"
+    t.integer "media_type_id"
+    t.integer "album_id"
+    t.integer "genre_id"
   end
 
   add_index "tracks", ["album_id"], name: "index_tracks_on_album_id"
